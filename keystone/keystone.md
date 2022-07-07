@@ -27,6 +27,3 @@ Pros:
 Cons:
 	+ Keystone không thể trở thành Identity Provider.
 	+ Hỗ trợ weak password ( no password rotation và no password recovery)
-4. Keystone workflow	
-
-![](https://i.imgur.com/8lgwq29.png)
