@@ -25,7 +25,7 @@ class Authentication(object):
     
     def _glance_client(self):
         sess = self.get_session()
-        return glance.Client(session=sess, region_name = self.region)
+        return glance.Client('2', session=sess, region_name = self.region)
     
     def _nova_client(self):
         sess = self.get_session()
