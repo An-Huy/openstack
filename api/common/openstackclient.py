@@ -7,12 +7,13 @@ from cinderclient import client as cinder
 from neutronclient.v2_0 import client as neutron
 from glanceclient.v2 import client as glance
 
+region = 'RegionOne'
+
 class Authentication(object):
 
-    def __init__(self, region):
+    def __init__(self):
         credentials = load_config("openstack")
         self.credentials = credentials
-        self.region = region
         
     def get_session(self):
         auth = v3.Password(**self.credentials)
@@ -21,20 +22,20 @@ class Authentication(object):
     
     def _keystone_client(self):
         sess = self.get_session()
-        return keystone.Client(session=sess, region_name=self.region)
+        return keystone.Client(session=sess, region_name = region)
     
     def _glance_client(self):
         sess = self.get_session()
-        return glance.Client('2', session=sess, region_name = self.region)
+        return glance.Client('2', session=sess, region_name = region)
     
     def _nova_client(self):
         sess = self.get_session()
-        return nova.Client('2', session=sess, region_name = self.region)
+        return nova.Client('2', session=sess, region_name = region)
     
     def _cinder_client(self):
         sess = self.get_session()
-        return cinder.Client('3', session=sess, region_name = self.region)
+        return cinder.Client('3', session=sess, region_name = region)
     
     def _neutron_client(self):
         sess = self.get_session()
-        return neutron.Client(session=sess, region_name = self.region)
+        return neutron.Client(session=sess, region_name = region)
